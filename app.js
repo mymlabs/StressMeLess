@@ -370,8 +370,12 @@ font-style: normal; */
 		if(!gameLoaded){
 			if(filesLoaded >= filesToLoad){
 				gameLoaded = true;
-				container.addEventListener("touchstart",onTouch);
-				container.addEventListener("mousedown",onTouch);
+				if(INPUT_TYPE){
+					addListeners();
+				}else{
+					container.addEventListener("touchstart",onTouch);
+					container.addEventListener("mousedown",onTouch);
+				}
 			}
 		}
 	}
@@ -1436,7 +1440,7 @@ font-style: normal; */
 				},1500);
 
 				userText.style.display = "block";
-
+				removeListeners();
 				GAME_STATE = "select"
 				break;
 
@@ -2018,4 +2022,30 @@ font-style: normal; */
 		allowInput = true;
 		gameEnd = false;
 	};
+
+	function removeListeners(){
+		activeListeners = false;
+		if(INPUT_TYPE == "mouse"){
+			container.removeEventListener("mousedown",onTouch);
+			container.removeEventListener("mousemove",onMove);
+			container.removeEventListener("mouseup",onRelease);
+		}else{
+			container.removeEventListener("touchstart",onTouch);
+			container.removeEventListener("touchmove",onMove);
+			container.removeEventListener("touchend",onRelease);
+		}
+	}
+	function addListeners(){
+		activeListeners = true;
+		if(INPUT_TYPE == "mouse"){
+			container.addEventListener("mousedown",onTouch);
+			container.addEventListener("mousemove",onMove);
+			container.addEventListener("mouseup",onRelease);
+		}else{
+			container.addEventListener("touchstart",onTouch);
+			container.addEventListener("touchmove",onMove);
+			container.addEventListener("touchend",onRelease);
+		}
+	}
+
 }());//End of IIFE
