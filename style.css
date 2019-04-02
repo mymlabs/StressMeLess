@@ -1,0 +1,47 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-size: 12px;
+    color: black;
+    background: black;
+}
+
+#container{
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 752px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#stressText{
+    display: none;
+    outline: none;
+    border: none;
+    background: none;
+/*    border: 2px solid #FFF;*/
+    resize: none;
+    width: 270px;
+    height: 38px;
+/*    position: relative;
+    left: 258px;
+    top: 340px;*/
+    color: "#FFF";
+    position: absolute;
+    left: 32%;
+    top:81%;
+    font-family: cooper-black-std, serif;
+    font-size: 22px;
+    color: #FFF;
+    overflow: hidden;
+    text-align: center;
+    z-index: 2;
+}
+
+canvas{
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
