@@ -1444,6 +1444,7 @@ font-style: normal; */
 					if(e.keyCode === 13){
 						console.log('enter');
 						e.preventDefault();
+						userText.blur();
 						addListeners();
 						return false;
 					}
