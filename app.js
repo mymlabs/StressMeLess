@@ -1440,7 +1440,20 @@ font-style: normal; */
 				},1500);
 
 				userText.style.display = "block";
+				userText.addEventListener("keydown",function(e){
+					if(e.keyCode === 13){
+						console.log('enter');
+						e.preventDefault();
+						addListeners();
+						return false;
+					}
+
+				})
+
 				removeListeners();
+
+
+
 				GAME_STATE = "select"
 				break;
 
