@@ -11,7 +11,7 @@ html,body{
     position: relative;
     width: 100%;
     height: auto;
-    max-width: 640px;
+    max-width: 400px;
     margin: 0 auto;
     overflow: hidden;
 }
