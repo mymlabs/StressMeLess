@@ -1410,9 +1410,9 @@ font-style: normal; */
 				activeLogoObjects[activeLogoObjects.length] = new logoPopUp(mymLogo);
 				setTimeout(changeState,2000);
 				GAME_STATE = "logos";
-				if(INPUT_TYPE === "touch"){
+/*				if(INPUT_TYPE === "touch"){
 					toggleFullScreen();
-				}
+				}*/
 				
 				break;
 			case "logos":
@@ -2149,7 +2149,7 @@ font-style: normal; */
 	}
 
 
-function toggleFullScreen() {
+/*function toggleFullScreen() {
   var doc = window.document;
   var docEl = doc.getElementById("canvas");
 
@@ -2162,5 +2162,5 @@ function toggleFullScreen() {
   else {
     cancelFullScreen.call(doc);
   }
-}
+}*/
 }());//End of IIFE
