@@ -5,13 +5,14 @@ html,body{
     font-size: 12px;
     color: black;
     background: black;
+    height: 600px;
 }
 
 #container{
     position: relative;
     width: 100%;
     height: auto;
-    max-width: 400px;
+    max-width: 752px;
     margin: 0 auto;
     overflow: hidden;
 }
