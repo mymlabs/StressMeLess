@@ -5,6 +5,7 @@ html,body{
     font-size: 12px;
     color: black;
     background: black;
+    height: 600px;
 }
 
 #container{
@@ -20,34 +21,63 @@ html,body{
     display: none;
     outline: none;
     border: none;
+
     background: none;
-/*    border: 2px solid #FFF;*/
+    border: 1px solid #97b2d8;
     resize: none;
     width: 270px;
-    height: 38px;
-/*    position: relative;
-    left: 258px;
-    top: 340px;*/
+    height: 55px;
     color: "#FFF";
     position: absolute;
     left: 32%;
-    top:81%;
+    top:30%;
     font-family: cooper-black-std, serif;
     font-size: 22px;
     color: #FFF;
     overflow: hidden;
     text-align: center;
     z-index: 2;
+    line-height: 50px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 8px black;
+    background: linear-gradient(to bottom, #0e61a4 0%,#002f82 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
     -webkit-user-select: text; /* Safari 3.1+ */
     -moz-user-select: text; /* Firefox 2+ */
     -ms-user-select: text; /* IE 10+ */
     user-select: text; /* Standard syntax */
-    
+}
+
+#stressButton{
+    display: none;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    font-family: cooper-black-std, serif;
+    color: #ff8201;
+    text-shadow: 1px 1px 2px #000;
+    position: absolute;
+    top: 51%;
+    left: 43%;
+    outline: none;
+    border: none;
+    border-radius: 35px;
+    box-shadow: 5px 5px 8px black;
+    background: linear-gradient(to bottom, #fff564 20%,#d0bf0d 100%);
 }
 
 canvas{
     overflow: hidden;
     width: 100%;
     height: auto;
+}
+
+@media (orientation: portrait){
+    #canvas{display: none;}
+    #wrong_orientation{display: block;}
+}
+
+@media (orientation: landscape){
+    #canvas{display: block;}
+    #wrong_orientation{display: none;}
 }

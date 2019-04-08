@@ -35,11 +35,15 @@ font-style: normal; */
 		gameLoaded = false;
 		gameLoop = setInterval(updateScreen,33);
 
+		gameWindow = document.getElementById("container");
+
 		easeValue = .25;
 		tweenSpring = .1;tweenFriction = .8;
 		targetSpring = .4;targetFriction = .8;
 
 		soundMuted = false;
+
+		isPotraitMode = false;
 
 		chosenObject = 0;
 		objectImage = 0;
@@ -50,6 +54,11 @@ font-style: normal; */
 
 		userText = document.getElementById("stressText");
 		userText.value = "";
+
+		stressButton = document.getElementById("stressButton");
+		stressButton.addEventListener("click", function(){
+			changeState();
+		})
 
 		stressSource = "";
 		transitionComplete = false;
@@ -1075,7 +1084,7 @@ font-style: normal; */
 
 			c.font = "20px cooper-black-std, serif";
 			c.textAlign = "center";
-			wrapString = "The goal of the game is to destroy your stress beyond repair. Watch your destruc-o-meter to keep track of the stress you have worked off.";
+			wrapString = "The goal of the game is to destroy your stress beyond repair. Watch your Destruc-o-meter to keep track of the stress you have worked off.";
 
 
 			c.fillStyle = "#000";
@@ -1108,15 +1117,39 @@ font-style: normal; */
 			});
 		}
 
+
+
+		if(GAME_STATE === "stressname"){
+
+			c.drawImage(brickBG,0,0);
+
+			c.fillStyle = "#000";
+			c.fillText("What stresses you out?",halfWidth+3,111);
+
+
+			c.fillStyle = "#FFF";
+			c.fillText("What stresses you out?",halfWidth,110);
+
+
+			activeTitleObjects.forEach(function(titleObject,index){
+				titleObject.update();
+			});
+
+
+		}
+
+
 		if(GAME_STATE === "select"){
 			c.drawImage(brickBG,0,0);
 
 			c.font = "20px cooper-black-std, serif";
 			c.textAlign = "center";
+			wrapString = "";
 			wrapString = "Select the object to represent your stress and then type in what is stressing you out. Click OK to begin.";
 
+
+
 			c.fillStyle = "#000";
-			c.fillText("What stresses you out?",halfWidth+3,325);
 			wrapText(c, 
 					wrapString,
 					halfWidth+3,108,
@@ -1125,7 +1158,6 @@ font-style: normal; */
 
 
 			c.fillStyle = "#FFF";
-			c.fillText("What stresses you out?",halfWidth,322);
 			wrapText(c,
 					wrapString,
 					halfWidth,105,
@@ -1199,7 +1231,16 @@ font-style: normal; */
 			}
 
 			
-
+			if(activeButton === 3 || activeButton === 4){
+				c.font = "20px cooper-black-std, serif";
+				c.textAlign = "center";
+				c.fillStyle = "#FFF";
+				if(INPUT_TYPE === "mouse"){
+					c.fillText("Click to hit!", halfWidth, 400);
+				}else{
+					c.fillText("Tap to hit!", halfWidth, 400);
+				}
+			}
 
 			if(activeDogObject[0]){
 				activeDogObject[0].update();
@@ -1313,8 +1354,7 @@ font-style: normal; */
 			c.fillStyle = "#000";
 			c.fillText("If you're feeling stressed...",halfWidth+3,109);
 
-			
-
+		
 			wrapText(c, 
 					"If you still find yourself struggling with an issue, consider talking with a professional.",
 					halfWidth+3,270,
@@ -1370,6 +1410,10 @@ font-style: normal; */
 				activeLogoObjects[activeLogoObjects.length] = new logoPopUp(mymLogo);
 				setTimeout(changeState,2000);
 				GAME_STATE = "logos";
+/*				if(INPUT_TYPE === "touch"){
+					toggleFullScreen();
+				}*/
+				
 				break;
 			case "logos":
 				activeFadeObjects[activeLogoObjects.length] = new screenFade(1,0,"#FFF");
@@ -1396,6 +1440,30 @@ font-style: normal; */
 
 			case "title":
 
+
+				stressButton.style.display = "block";
+
+				userText.style.display = "block";
+				userText.addEventListener("keydown",function(e){
+					if(e.keyCode === 13){
+						console.log('enter');
+						e.preventDefault();
+						userText.blur();
+						addListeners();
+						return false;
+					}
+				})
+
+				removeListeners();
+
+				/*GAME_STATE = "select"*/
+				GAME_STATE = "stressname";
+				break;
+
+			case "stressname":
+				addListeners();
+				stressButton.style.display = "none";
+				userText.style.display = "none";
 				setTimeout(function(){
 					activeTitleObjects[activeTitleObjects.length] = new titleObject(pickText,screenWidth,6,6,6);
 				},50);
@@ -1416,9 +1484,9 @@ font-style: normal; */
 					activeTitleObjects[activeTitleObjects.length] = new titleObject(chooseBG,469,screenHeight,469,128);
 				},750);
 
-				setTimeout(function(){
-					activeTitleObjects[activeTitleObjects.length] = new titleObject(nameTextBG,screenWidth,324,235,324);
-				},950);
+/*				setTimeout(function(){
+					activeTitleObjects[activeTitleObjects.length] = new titleObject(nameTextBG,screenWidth,174,235,174);
+				},950);*/
 
 				setTimeout(function(){
 					activeTitlePopups[activeTitlePopups.length] = new titlePopUp(chooseBeachball,184,217);
@@ -1438,22 +1506,6 @@ font-style: normal; */
 						bloopSnd.play();
 					}
 				},1500);
-
-				userText.style.display = "block";
-				userText.addEventListener("keydown",function(e){
-					if(e.keyCode === 13){
-						console.log('enter');
-						e.preventDefault();
-						userText.blur();
-						addListeners();
-						return false;
-					}
-
-				})
-
-				removeListeners();
-
-
 
 				GAME_STATE = "select"
 				break;
@@ -1643,7 +1695,8 @@ font-style: normal; */
 		switch(GAME_STATE){
 			case "loading":
 				bloopSnd.play();
-				changeState();
+				changeState();	
+
 				break;
 
 			case "title":
@@ -2062,4 +2115,52 @@ font-style: normal; */
 		}
 	}
 
+	function setupObjectChoice(){
+
+		setTimeout(function(){
+			activeTitleObjects[activeTitleObjects.length] = new titleObject(chooseBG,98,screenHeight,98,128);
+		},350);
+		setTimeout(function(){
+			activeTitleObjects[activeTitleObjects.length] = new titleObject(chooseBG,283,screenHeight,283,128);
+		},550);
+		setTimeout(function(){
+			activeTitleObjects[activeTitleObjects.length] = new titleObject(chooseBG,469,screenHeight,469,128);
+		},750);
+
+
+		setTimeout(function(){
+			activeTitlePopups[activeTitlePopups.length] = new titlePopUp(chooseBeachball,184,217);
+				if(soundMuted===false){
+				bloopSnd.play();
+			}
+		},1200);
+		setTimeout(function(){
+			activeTitlePopups[activeTitlePopups.length] = new titlePopUp(chooseBasketball,374,217);
+			if(soundMuted===false){
+				bloopSnd.play();
+			}
+		},1350);
+		setTimeout(function(){
+			activeTitlePopups[activeTitlePopups.length] = new titlePopUp(choosePaper,559,217);
+			if(soundMuted===false){
+				bloopSnd.play();
+			}
+		},1500);	
+	}
+
+
+function toggleFullScreen() {
+  var doc = window.document;
+  var docEl = doc.getElementById("canvas");
+
+  var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  }
+  else {
+    cancelFullScreen.call(doc);
+  }
+}
 }());//End of IIFE
