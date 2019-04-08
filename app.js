@@ -331,42 +331,42 @@ font-style: normal; */
 
 	    bloopSnd = new Howl({
 	      src: ['sounds/bloop_sound.mp3'],
-	      volume: 0.6
+	      volume: 0.8
 	    });
 
 	    selectSnd = new Howl({
 	      src: ['sounds/select_sound.mp3'],
-	      volume: 0.6
+	      volume: 0.8
 	    });
 
 	    swingSnd = new Howl({
 	      src: ['sounds/swing_sound.mp3'],
-	      volume: 0.6
+	      volume: 0.9
 	    });
 
 	    hitSnd = new Howl({
 	      src: ['sounds/hit_sound.mp3'],
-	      volume: 0.7
+	      volume: 0.9
 	    });
 
 	    tractorSnd = new Howl({
 	      src: ['sounds/tractor_sound.mp3'],
-	      volume: 0.6
+	      volume: 1
 	    });
 
 	    fireSnd = new Howl({
 	      src: ['sounds/fire_sound.mp3'],
-	      volume: 0.7
+	      volume: 1
 	    });
 
 	    growlSnd = new Howl({
 	      src: ['sounds/growl_sound.mp3'],
-	      volume: 0.75
+	      volume: 0.9
 	    });
 
 	    dogSnd = new Howl({
 	      src: ['sounds/dog_sound.mp3'],
-	      volume: 0.7
+	      volume: 0.9
 	    });
 	}//End of loadAssets
 
