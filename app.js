@@ -1663,8 +1663,8 @@ font-style: normal; */
 //                |__/   
 
 	function onTouch(e){
-		window.scrollTo(0,1);
-		e.preventDefault();
+/*		window.scrollTo(0,1);
+		e.preventDefault();*/
 
 		if(!INPUT_TYPE){
 			if(e.clientX){
@@ -1686,8 +1686,8 @@ font-style: normal; */
 	}//End of onTouch
 
 	function onRelease(e){
-		window.scrollTo(0,1);
-		e.preventDefault();
+/*		window.scrollTo(0,1);
+		e.preventDefault();*/
 
 		var modelY = clickY * (canvas.height / canvas.offsetHeight);
 		var modelX = clickX * (canvas.width / canvas.offsetWidth);
@@ -1930,11 +1930,11 @@ font-style: normal; */
 		}//end of switch statement
 	}//End of onRelease
 
-	function onMove(e){
+/*	function onMove(e){
 		window.scrollTo(0,1);
 		e.preventDefault();
 	}//End of onMove
-
+*/
 
 //   /$$$$$$$$                              /$$     /$$                              
 //  | $$_____/                             | $$    |__/                              
