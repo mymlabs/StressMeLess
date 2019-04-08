@@ -1444,7 +1444,7 @@ font-style: normal; */
 				stressButton.style.display = "block";
 
 				userText.style.display = "block";
-				userText.addEventListener("keydown",function(e){
+/*				userText.addEventListener("keydown",function(e){
 					if(e.keyCode === 13){
 						console.log('enter');
 						e.preventDefault();
@@ -1452,7 +1452,7 @@ font-style: normal; */
 						addListeners();
 						return false;
 					}
-				})
+				})*/
 
 				removeListeners();
 
