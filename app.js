@@ -1930,11 +1930,11 @@ font-style: normal; */
 		}//end of switch statement
 	}//End of onRelease
 
-/*	function onMove(e){
-		window.scrollTo(0,1);
-		e.preventDefault();
+	function onMove(e){
+/*		window.scrollTo(0,1);
+		e.preventDefault();*/
 	}//End of onMove
-*/
+
 
 //   /$$$$$$$$                              /$$     /$$                              
 //  | $$_____/                             | $$    |__/                              
