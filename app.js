@@ -29,7 +29,7 @@ font-style: normal; */
 		offsetX = container.offsetLeft;
 		offsetY = container.offsetTop;
 		INPUT_TYPE = null;
-		filesToLoad = 58;
+		filesToLoad = 56;
 		filesLoaded = 0;
 		GAME_STATE = "loading";
 		gameLoaded = false;
@@ -143,7 +143,6 @@ font-style: normal; */
 		chooseBeachball = new Image();
 		chooseBasketball = new Image();
 		choosePaper = new Image();
-		nameTextBG = new Image();
 		okButton = new Image();
 		basketballFull = new Image();
 		beachballFull = new Image();
@@ -188,7 +187,6 @@ font-style: normal; */
 		copingText = new Image();
 		tipText = new Image();
 		tipBG = new Image();
-		pdfIcon = new Image();
 		endLinkBG = new Image();
 		doAgainBtn = new Image();
 
@@ -210,7 +208,6 @@ font-style: normal; */
 		chooseBeachball.onload = updateLoading();
 		chooseBasketball.onload = updateLoading();
 		choosePaper.onload = updateLoading();
-		nameTextBG.onload = updateLoading();
 		okButton.onload = updateLoading();
 		basketballFull.onload = updateLoading();
 		beachballFull.onload = updateLoading();
@@ -255,7 +252,6 @@ font-style: normal; */
 		copingText.onload = updateLoading();
 		tipText.onload = updateLoading();
 		tipBG.onload = updateLoading();
-		pdfIcon.onload = updateLoading();
 		endLinkBG.onload = updateLoading();
 		doAgainBtn.onload = updateLoading();
 
@@ -277,7 +273,6 @@ font-style: normal; */
 		chooseBeachball.src = "images/choose_beachball.png";
 		chooseBasketball.src = "images/choose_basketball.png";
 		choosePaper.src = "images/choose_paper.png";
-		nameTextBG.src = "images/name_text_bg.png";
 		okButton.src = "images/ok_button.png";
 		basketballFull.src = "images/basketball_full.png";
 		beachballFull.src = "images/beachball_full.png";
@@ -322,7 +317,6 @@ font-style: normal; */
 		copingText.src = "images/coping_text.png";
 		tipText.src = "images/tip_text.png";
 		tipBG.src = "images/tip_bg.png";
-		pdfIcon.src = "images/pdf_icon.png";
 		endLinkBG.src = "images/end_links_bg.png";
 		doAgainBtn.src = "images/do_again_btn.png";
 
@@ -351,12 +345,12 @@ font-style: normal; */
 
 	    tractorSnd = new Howl({
 	      src: ['sounds/tractor_sound.mp3'],
-	      volume: 1
+	      volume: 1.0
 	    });
 
 	    fireSnd = new Howl({
 	      src: ['sounds/fire_sound.mp3'],
-	      volume: 1
+	      volume: 1.0
 	    });
 
 	    growlSnd = new Howl({
@@ -1342,31 +1336,29 @@ font-style: normal; */
 		if(GAME_STATE === "endscreen"){
 			c.drawImage(brickBG,0,0);
 
-
-			c.drawImage(pdfIcon,220,175);
-			c.drawImage(endLinkBG,240,185);
-
 			c.drawImage(endLinkBG,240,302);
 
 			c.font = "20px cooper-black-std, serif";
 			c.textAlign = "center";
 
 			c.fillStyle = "#000";
-			c.fillText("If you're feeling stressed...",halfWidth+3,109);
+			c.fillText("If you're feeling stressed...",halfWidth+3,139);
 
 		
 			wrapText(c, 
-					"If you still find yourself struggling with an issue, consider talking with a professional.",
-					halfWidth+3,270,
+					"You can find more resources on the mindyourmind website. If you are still struggling with your stress, consider talking with a professional.",
+					halfWidth+3,250,
 					592,20
 					);
 
 
 			c.fillStyle = "#FFF";
-			c.fillText("If you're feeling stressed...",halfWidth,106);
+			c.fillText("If you're feeling stressed...",halfWidth,136);
+
+
 			wrapText(c,
-					"If you still find yourself struggling with an issue, consider talking with a professional.",
-					halfWidth,268,
+					"You can find more resources on the mindyourmind website. If you are still struggling with your stress, consider talking with a professional.",
+					halfWidth,248,
 					592,20
 					);
 
@@ -1382,10 +1374,9 @@ font-style: normal; */
 
 
 			c.font = "18px cooper-black-std, serif";
-			c.fillText(tipString,halfWidth,142);
+			c.fillText(tipString,halfWidth,172);
 
-			c.fillText("Find more tips here!",halfWidth,213);
-			c.fillText("Find one here",halfWidth,330);
+			c.fillText("Go to mindyourmind.ca",halfWidth - 3,330);
 
 
 			activeFadeObjects.forEach(function(fadeObject,index){
@@ -1616,7 +1607,7 @@ font-style: normal; */
 				},700);
 
 				setTimeout(function(){
-					activeTitleObjects[activeTitleObjects.length] = new titleObject(tipBG,95,screenHeight,95,106);
+					activeTitleObjects[activeTitleObjects.length] = new titleObject(tipBG,95,screenHeight,95,136);
 				},1100);
 				setTimeout(function(){
 					activeTitlePopups[activeTitlePopups.length] = new titlePopUp(doAgainBtn,680,355);
@@ -1910,9 +1901,6 @@ font-style: normal; */
 
 			case "endscreen":
 				if(modelX > 230 && modelX < 514){
-					if(modelY > 180 && modelY < 236){
-						console.log('tips PDF');
-					}
 					if(modelY > 294 && modelY < 350){
 						window.open("https://mindyourmind.ca/help"); 
 					}
